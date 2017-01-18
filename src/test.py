@@ -63,7 +63,21 @@ class  Test(unittest.TestCase):
         ab.addPerson(p2)
         ab.addPersonToGroup(p2,[2])
         print("result:")
-        print (ab)
+        
+        members = ab.getGroupMembers(2)
+        print("members:")
+        print(len(members))
+        #print(members)
+        print(members[0].getFirstName())
+        print(members[0].getLastName())
+        assert len(members)==1
+        members = ab.getGroupMembers(1)
+        print("members group1 :")
+        print(len(members))
+        assert len(members)==2
+        print(members[1].getFirstName())
+        print(members[1].getLastName())
+        
 if __name__ == '__main__':
     unittest.main()
 

@@ -25,7 +25,7 @@ class AddressBook (object):
             self.registerGroups(p.getGroups(), p.getPersonID())
                 
     def addPersonToGroup(self, person, groups):
-        self.registerGroups(groups, person.getPersonID )
+        self.registerGroups(groups, person.getPersonID() )
         print("Groups")
         print(person.getGroups())
         
@@ -68,11 +68,18 @@ class AddressBook (object):
     def registerGroups(self, groups, personID):
         currentList=list()
         for group in groups:
-            print ("group:")
-            print(group)
+            print " register group:", group
             currentList = self.Groups.setdefault(group, list())
             print currentList
             if group not in currentList:
                 currentList.append(personID)
-        print self.Phones
-        
+        print self.Groups
+    
+    def getGroupMembers(self, group):
+        print "Group Mebers for ", group
+        personids = self.Groups.setdefault(group, list())
+        print(personids[0])
+        print (len(personids))
+        if (len(personids)>0):
+            return [pv for pk, pv in self.People.items() if pv.getPersonID() in personids]
+        return list()
